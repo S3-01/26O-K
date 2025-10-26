@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial 💛</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        h1 {
+            color: #e17055;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .anniversary {
+            color: #fdcb6e;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            color: #2d3436;
+            font-size: 20px;
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.6);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #d63031, #e17055);
+            color: white;
+            position: absolute;
+            box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
+        }
+
+        .invitation-card {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .sunflower {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .invitation-details {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            color: #2d3436;
+        }
+
+        .invitation-details h2 {
+            color: #e17055;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .invitation-details p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .love-note {
+            background: #fff5f5;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #e17055;
+            margin-top: 20px;
+            font-style: italic;
+            color: #2d3436;
+            line-height: 1.8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="questionCard" class="card">
+            <div class="heart">💛</div>
+            <h1>Una Invitación Especial</h1>
+            <div class="anniversary">7 Años y 6 Meses</div>
+            <p class="question">
+                En este tiempo hemos creado momentos inolvidables juntos...<br>
+                ¿Aceptas crear uno más conmigo?
+            </p>
+            <div class="buttons">
+                <button class="btn-yes" onclick="acceptInvitation()">Sí, acepto 💕</button>
+                <button class="btn-no" id="btnNo" onmouseover="moveButton()" onclick="moveButton()">No acepto</button>
+            </div>
+        </div>
+
+        <div id="invitationCard" class="card invitation-card hidden">
+            <svg class="sunflower" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="25" fill="#8B4513"/>
+                <ellipse cx="100" cy="60" rx="15" ry="35" fill="#FFD700"/>
+                <ellipse cx="100" cy="140" rx="15" ry="35" fill="#FFD700"/>
+                <ellipse cx="60" cy="100" rx="35" ry="15" fill="#FFD700"/>
+                <ellipse cx="140" cy="100" rx="35" ry="15" fill="#FFD700"/>
+                <ellipse cx="73" cy="73" rx="20" ry="30" fill="#FFD700" transform="rotate(-45 73 73)"/>
+                <ellipse cx="127" cy="73" rx="20" ry="30" fill="#FFD700" transform="rotate(45 127 73)"/>
+                <ellipse cx="73" cy="127" rx="20" ry="30" fill="#FFD700" transform="rotate(45 73 127)"/>
+                <ellipse cx="127" cy="127" rx="20" ry="30" fill="#FFD700" transform="rotate(-45 127 127)"/>
+            </svg>
+
+            <div class="invitation-details">
+                <h2>¡Estás Invitada! 🌻</h2>
+                <p><strong>Fecha:</strong> Hoy, 26 de Octubre</p>
+                <p><strong>Hora:</strong> 4:00 PM</p>
+                <p><strong>Plan:</strong> Salir y disfrutar de una tarde diferente</p>
+                <p>Una tarde especial para celebrar nuestro amor y crear más recuerdos juntos 💛</p>
+            </div>
+
+            <div class="love-note">
+                <p>
+                    En estos 7 años y 6 meses has sido mi compañera, mi cómplice y mi razón para sonreír cada día. 
+                    Cada momento a tu lado es un regalo que atesoro en mi corazón. Hoy quiero celebrar nuestro amor 
+                    con una tarde inolvidable, porque mereces todo lo hermoso que la vida puede ofrecer. 
+                    Gracias por ser mi luz, mi inspiración y mi hogar. Te amo más de lo que las palabras pueden expresar. 💕
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const btnNo = document.getElementById('btnNo');
+            const container = document.querySelector('.buttons');
+            const containerRect = container.getBoundingClientRect();
+            
+            const maxX = containerRect.width - btnNo.offsetWidth;
+            const maxY = containerRect.height - btnNo.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        function acceptInvitation() {
+            const questionCard = document.getElementById('questionCard');
+            const invitationCard = document.getElementById('invitationCard');
+            
+            questionCard.classList.add('hidden');
+            invitationCard.classList.remove('hidden');
+            invitationCard.classList.add('show');
+        }
+    </script>
+</body>
+</html>
