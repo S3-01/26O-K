@@ -79,12 +79,16 @@
         }
 
         .buttons {
+            position: relative;
+            margin-top: 30px;
+            min-height: 200px;
+            width: 100%;
+        }
+
+        .buttons-container {
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-top: 30px;
-            position: relative;
-            min-height: 60px;
         }
 
         button {
@@ -111,8 +115,12 @@
         .btn-no {
             background: linear-gradient(135deg, #d63031, #e17055);
             color: white;
-            position: absolute;
             box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
+        }
+
+        .btn-no.moving {
+            position: absolute;
+            transition: all 0.3s ease;
         }
 
         .invitation-card {
@@ -183,8 +191,10 @@
                 ¿Aceptas crear uno más conmigo?
             </p>
             <div class="buttons">
-                <button class="btn-yes" onclick="acceptInvitation()">Sí, acepto 💕</button>
-                <button class="btn-no" id="btnNo" onmouseover="moveButton()" onclick="moveButton()">No acepto</button>
+                <div class="buttons-container">
+                    <button class="btn-yes" onclick="acceptInvitation()">Sí, acepto 💕</button>
+                    <button class="btn-no" id="btnNo" onmouseover="moveButton()" onclick="moveButton()">No acepto</button>
+                </div>
             </div>
         </div>
 
@@ -226,8 +236,14 @@
             const container = document.querySelector('.buttons');
             const containerRect = container.getBoundingClientRect();
             
-            const maxX = containerRect.width - btnNo.offsetWidth;
-            const maxY = containerRect.height - btnNo.offsetHeight;
+            // Agregar clase para posicionamiento absoluto
+            if (!btnNo.classList.contains('moving')) {
+                btnNo.classList.add('moving');
+            }
+            
+            // Calcular posición aleatoria dentro del contenedor
+            const maxX = containerRect.width - btnNo.offsetWidth - 20;
+            const maxY = containerRect.height - btnNo.offsetHeight - 20;
             
             const randomX = Math.random() * maxX;
             const randomY = Math.random() * maxY;
